@@ -66,7 +66,7 @@ const InputFile = ({
                   src={
                     src.startsWith('blob:')
                       ? src
-                      : `http://localhost:9070/uploads/user/${src}`
+                      : `https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/user/${src}`
                   }
                   alt={`미리보기 ${idx + 1}`}
                 />

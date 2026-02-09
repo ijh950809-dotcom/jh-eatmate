@@ -17,7 +17,7 @@ const [bcInput, setBcInput] = useState({
 const navigate = useNavigate();
 
 useEffect(() =>{
-  axios.get(`http://localhost:9070/community/detail/${bc_no}`)
+  axios.get(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/community/detail/${bc_no}`)
   .then(res => {
     // console.log('서버 응답 값 : ', res.data);
     setBcInput(res.data);
@@ -37,7 +37,7 @@ const handleSubmit = async (e) =>{
   e.preventDefault();
 
   try {
-    await axios.put(`http://localhost:9070/community/update/${bc_no}`, {
+    await axios.put(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/community/update/${bc_no}`, {
       bc_title: bcInput.bc_title,
       bc_desc: bcInput.bc_desc,
     })
