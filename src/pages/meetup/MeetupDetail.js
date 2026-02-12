@@ -97,7 +97,7 @@ const MeetupDetail = () => {
   const deleteData = (bm_no) => {
     if (window.confirm('삭제하시겠습니까?')) {
       axios
-        .delete(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/${bm_no}`)
+        .delete(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/delmeetup/${bm_no}`)
         .then(() => {
           alert('삭제되었습니다.');
           navigate('/meetup');
