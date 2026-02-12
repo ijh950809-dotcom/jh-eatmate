@@ -194,7 +194,7 @@ const MeetupDetail = () => {
 
 
         <div className='content-box'>
-          <img className="content-img" src={`http://localhost:9070/uploads/meetup/${meetUp.bm_img}`} alt="" />
+          <img className="content-img" src={`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup/${meetUp.bm_img}`} alt="" />
           <p className='content-txt'>{meetUp.bm_title}
             <span className='content-txt-detail'>
               {meetUp.bm_desc}
