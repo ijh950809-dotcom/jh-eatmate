@@ -165,7 +165,7 @@ const MeetupDetail = () => {
 
         <div className='user-writer'>
           <div className='user'>
-            <div className='user-img'><img src={`http://localhost:9070/uploads/user/${meetUp.u_pic}`} alt="" /></div>
+            <div className='user-img'><img src={`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/user/${meetUp.u_pic}`} alt="" /></div>
             <p className='user-info'>{meetUp.u_nick}<span className='user-info-gap'>&middot;</span>{dateFormat(meetUp.bm_date)}</p>
           </div>
 
