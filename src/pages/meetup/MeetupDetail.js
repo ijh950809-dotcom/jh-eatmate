@@ -30,7 +30,7 @@ const MeetupDetail = () => {
       navigate('/login');
       return;
     }
-    axios.post('https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup_join', {
+    axios.post('http://localhost:9070/meetup_join', {
       bm_no, user_no: decoded.token_no
     }).then(() => {
       setJoined(true);
@@ -42,7 +42,7 @@ const MeetupDetail = () => {
   }
 
   const handleCancel = () => {
-    axios.delete('https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup_join', {
+    axios.delete('http://localhost:9070/meetup_join', {
       data: { bm_no, user_no: decoded.token_no }
     }).then(() => {
       setJoined(false);
@@ -97,7 +97,7 @@ const MeetupDetail = () => {
   const deleteData = (bm_no) => {
     if (window.confirm('삭제하시겠습니까?')) {
       axios
-        .delete(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/delmeetup/${bm_no}`)
+        .delete(`http://localhost:9070/delmeetup/${bm_no}`)
         .then(() => {
           alert('삭제되었습니다.');
           navigate('/meetup');
@@ -110,13 +110,13 @@ const MeetupDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const meetupRes = await axios.get('https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup/', {
+        const meetupRes = await axios.get('http://localhost:9070/meetup/', {
           params: { bm_no }
         });
         setMeetUp(meetupRes.data);
 
         if (token) {
-          const joinRes = await axios.get('https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup_join', {
+          const joinRes = await axios.get('http://localhost:9070/meetup_join', {
             params: { bm_no, user_no: decoded.token_no }
           });
           setJoined(joinRes.data.joined);
@@ -133,7 +133,7 @@ const MeetupDetail = () => {
   }, [bm_no, token]);
 
   // useEffect(() => {
-  //   axios.get(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup/`, {
+  //   axios.get(`http://localhost:9070/meetup/`, {
   //     params: { bm_no }
   //   })
   //     .then(res => {
@@ -146,7 +146,7 @@ const MeetupDetail = () => {
 
   // useEffect(() => {
   //   if (!token) return;
-  //   axios.get('https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup_join', {
+  //   axios.get('http://localhost:9070/meetup_join', {
   //     params: { bm_no, user_no: decoded.token_no }
   //   })
   //     .then(res => {
@@ -165,7 +165,7 @@ const MeetupDetail = () => {
 
         <div className='user-writer'>
           <div className='user'>
-            <div className='user-img'><img src={`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/user/${meetUp.u_pic}`} alt="" /></div>
+            <div className='user-img'><img src={`http://localhost:9070/uploads/user/${meetUp.u_pic}`} alt="" /></div>
             <p className='user-info'>{meetUp.u_nick}<span className='user-info-gap'>&middot;</span>{dateFormat(meetUp.bm_date)}</p>
           </div>
 
@@ -194,7 +194,7 @@ const MeetupDetail = () => {
 
 
         <div className='content-box'>
-          <img className="content-img" src={`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/meetup/${meetUp.bm_img}`} alt="" />
+          <img className="content-img" src={`http://localhost:9070/uploads/meetup/${meetUp.bm_img}`} alt="" />
           <p className='content-txt'>{meetUp.bm_title}
             <span className='content-txt-detail'>
               {meetUp.bm_desc}
