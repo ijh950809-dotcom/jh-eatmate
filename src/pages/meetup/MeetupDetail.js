@@ -15,7 +15,7 @@ import tabTxtImg1 from 'assets/images/meetup/con-txt-img1.png';
 import tabTxtImg2 from 'assets/images/meetup/con-txt-img2.png';
 import tabTxtImg3 from 'assets/images/meetup/con-txt-img3.png';
 import { dateFormat } from 'utils/dateFormat'
-import { dateFormat3 } from 'utils/dateFormat3'
+import { dateFormat3 } from 'utils/dateFormat2'
 
 const MeetupDetail = () => {
   const { bm_no } = useParams();
