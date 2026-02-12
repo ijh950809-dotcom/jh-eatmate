@@ -71,7 +71,7 @@ const CpMeetup = ({ mypageUser, mypageCategory }) => {
                 <HeartCommentList heart={item.bm_heart} comment={item.bm_comment} />
               </div>
               <div className='item-img'>
-                <img src={`http://localhost:9070/uploads/meetup/${item.bm_img}`} alt="" />
+                <img src={`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/meetup/${item.bm_img}`} alt="" />
               </div>
             </div>
           </Link>
