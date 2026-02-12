@@ -18,12 +18,12 @@ const CpMeetup = ({ mypageUser, mypageCategory }) => {
   const loadData = () => {
     if (!mypageUser) {
       // 맛집 탐방
-      axios.get('http://localhost:9070/meetup/all')
+      axios.get('https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup/all')
         .then(res => setData(res.data))
         .catch(err => console.log(err))
     } else {
       // 마이페이지 - 작성한 게시글
-      axios.get('http://localhost:9070/meetup', {
+      axios.get('https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/meetup', {
         params: { user_no: mypageUser, board_cate: mypageCategory }
       })
         .then(res => setData(res.data))
