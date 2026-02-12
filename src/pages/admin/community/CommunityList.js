@@ -3,8 +3,21 @@ import Aside from 'components/admin/Aside';
 import TitleBox from 'components/admin/TitleBox';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { dateFormat2 } from 'utils/dateFormat2';
+import { jwtDecode } from 'jwt-decode';
+import { useAdminRequireLogin } from 'utils/useAdminRequireLogin';
 
 function CommunityList(props) {
+  useAdminRequireLogin(); // 페이지에 진입했을 때 로그인이 안되어 있다면 로그인 페이지로 이동
+  const token = localStorage.getItem('adminToken');
+  //토큰만료 확인후 삭제
+  if (token) {
+    const { exp } = jwtDecode(token);
+    if (Date.now() >= exp * 1000) {
+      localStorage.removeItem('adminToken');
+    }
+  }
+
   const [data, setData] = useState([]);
 
   const loadData = () => {
@@ -20,11 +33,10 @@ function CommunityList(props) {
   }, []);
 
   const deleteData = async (bc_no, u_nick) => {
-    if(window.confirm(`${u_nick}님의 게시물을 삭제하시겠습니까?`))
-    {
-      try{
+    if (window.confirm(`${u_nick}님의 게시물을 삭제하시겠습니까?`)) {
+      try {
         await axios
-        .delete(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/admin/community/${bc_no}`);
+          .delete(`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/admin/community/${bc_no}`);
 
         alert(`선택하신 ${u_nick}님의 게시글을 삭제했습니다.`);
         loadData();
@@ -38,12 +50,13 @@ function CommunityList(props) {
   return (
     <>
       <section className='admin-list admin-userlist'>
-        <article className="pc-inner">
+        <h2 className='hidden'>자유게시판 목록</h2>
+        <div className="pc-inner">
           {/* 좌측 내비 */}
           <Aside navName="board" />
 
           {/* 우측 리스트 */}
-          <div className='admin-list'>
+          <article className='admin-list'>
             <TitleBox title="자유게시판 목록" />
 
             <table>
@@ -79,7 +92,7 @@ function CommunityList(props) {
                     <td>{item.bc_desc}</td>
                     <td>{item.bc_heart}</td>
                     <td>{item.bc_comment}</td>
-                    <td>{item.bc_date}</td>
+                    <td>{dateFormat2(item.bc_date)}</td>
                     <td className='btn-td'>
                       <Link to={`/admin/board/community/modify/${item.bc_no}`} className='btn-update btn'>수정</Link>
                       <button className='btn-delete btn' onClick={() => deleteData(item.bc_no, item.u_nick)}>삭제</button>
@@ -89,8 +102,8 @@ function CommunityList(props) {
                 }
               </tbody>
             </table>
-          </div>
-        </article>
+          </article>
+        </div>
       </section>
     </>
   );

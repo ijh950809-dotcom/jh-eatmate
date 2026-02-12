@@ -9,6 +9,7 @@ const InputFile = ({
   maxFiles = 1,
   onFilesChange,
   defaultPreview,
+  imgUrl = 'user',
 }) => {
   const [previews, setPreviews] = useState([]);
 
@@ -66,7 +67,7 @@ const InputFile = ({
                   src={
                     src.startsWith('blob:')
                       ? src
-                      : `https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/user/${src}`
+                      : `https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/${imgUrl}/${src}`
                   }
                   alt={`미리보기 ${idx + 1}`}
                 />

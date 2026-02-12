@@ -1,9 +1,10 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import './Comment.scss';
 
-function Comment({ profil, nick, txt, time }) {
+function Comment({ profil, nick, txt, time, isMine, onDelete }) {
   return (
     <>
-      {/* ------게시글 댓글------ */}
       <li>
         <div className="comment-img">
           <img src={`https://port-0-jh-eatmate-backend-mleqh0x837c33d90.sel3.cloudtype.app/uploads/user/${profil}`} alt={`${nick} 프로필`} />
@@ -13,6 +14,13 @@ function Comment({ profil, nick, txt, time }) {
           <span className='comment-nick'>{nick}</span>
           <p className='comment-txt'>{txt}</p>
           <span className="comment-time">{time}</span>
+          {
+            isMine &&
+            <button className="comment-delete" onClick={onDelete}>
+              <FontAwesomeIcon icon={faXmark} />
+              <span className="blind">삭제</span>
+            </button>
+          }
         </div>
       </li>
     </>
